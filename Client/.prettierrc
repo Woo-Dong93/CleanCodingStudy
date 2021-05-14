@@ -1,0 +1,7 @@
+{
+  "printWidth": 120, // 최대 한줄의 글자수가 120자로 제한하겠다.
+  "tabWidth": 2, // 탭간격은 2칸
+  "singleQuote": true, // 작은따옴표를 사용하겠다
+  "trailingComma": "all", // 항상 콤마를 뒤에 붙이겠다. (객체등)
+  "semi": true // 항상 세미콜론 붙이겠다.
+}
