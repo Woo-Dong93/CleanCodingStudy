@@ -1,3 +1,16 @@
-.test {
-  color: red;
+.Main-container {
+  width: 100%;
+  margin-top: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .Input-container {
+    flex-basis: 400px;
+  }
+
+  .Button-container {
+    margin-left: 20px;
+    flex-basis: 180px;
+  }
 }

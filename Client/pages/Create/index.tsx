@@ -8,12 +8,18 @@ const Create = () => {
     console.log('hi');
   };
   return (
-    <div>
-      생성페이지입니다.
-      <Input type="text" color="green" size="auto" fontSize="middle" placeHolder="블로그 이름을 입력해주세요!" />
-      <Button color="green" size="middle" handler={h}>
-        생성하기
-      </Button>
+    <div className="Main-container">
+      <div className="Input-container">
+        <Input type="text" color="green" size="auto" fontSize="middle" placeHolder="블로그 이름을 입력해주세요!" />
+      </div>
+      <div className="Button-container">
+        <Button color="green" size="middle" handler={h}>
+          생성하기
+        </Button>
+        <Button color="green" size="middle" handler={h}>
+          불러오기
+        </Button>
+      </div>
     </div>
   );
 };
