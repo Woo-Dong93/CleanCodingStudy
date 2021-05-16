@@ -1,0 +1,45 @@
+.Button {
+  color: white;
+  font-weight: bold;
+  outline: none;
+  border-radius: 4px;
+  cursor: pointer;
+
+  // 색상 관리
+  &.black {
+    background-color: black;
+  }
+
+  &.green {
+    background-color: green;
+  }
+
+  &.blue {
+    background-color: blue;
+  }
+
+  // 사이즈 관리
+  &.small {
+    height: 1.75rem;
+    font-size: 0.875rem;
+  }
+
+  &.middle {
+    height: 2.25rem;
+    font-size: 1rem;
+  }
+
+  &.large {
+    height: 3rem;
+    font-size: 1.25rem;
+  }
+
+  &.auto {
+    height: 100%;
+    width: 100%;
+  }
+
+  & + & {
+    margin-left: 1rem;
+  }
+}

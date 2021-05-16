@@ -50,4 +50,8 @@
   &.font-large {
     font-size: 40px;
   }
+
+  & + & {
+    margin-left: 1rem;
+  }
 }
