@@ -1,0 +1,53 @@
+@mixin Input-color($color) {
+  color: $color;
+}
+
+@mixin Input-size($height, $width) {
+  height: $height;
+  width: $width;
+}
+
+.Input {
+  // 색상 관리
+  &.black {
+    @include Input-color(black);
+  }
+
+  &.green {
+    @include Input-color(green);
+  }
+
+  &.blue {
+    @include Input-color(blue);
+  }
+
+  // 사이즈 관리
+  &.small {
+    @include Input-size(20px, 100px);
+  }
+
+  &.middle {
+    @include Input-size(40px, 200px);
+  }
+
+  &.large {
+    @include Input-size(60px, 300px);
+  }
+
+  &.auto {
+    @include Input-size(100%, 100%);
+  }
+
+  // 폰트 사이즈 관리
+  &.font-small {
+    font-size: 15px;
+  }
+
+  &.font-middle {
+    font-size: 25px;
+  }
+
+  &.font-large {
+    font-size: 40px;
+  }
+}
