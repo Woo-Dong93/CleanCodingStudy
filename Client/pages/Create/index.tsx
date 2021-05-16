@@ -4,7 +4,7 @@ import Button from '@components/Button';
 import './styled.scss';
 
 const Create = () => {
-  const h = () => {
+  const testHandler = () => {
     console.log('hi');
   };
   return (
@@ -13,10 +13,10 @@ const Create = () => {
         <Input type="text" color="green" size="auto" fontSize="middle" placeHolder="블로그 이름을 입력해주세요!" />
       </div>
       <div className="Button-container">
-        <Button color="green" size="middle" handler={h}>
+        <Button color="green" size="middle" handler={testHandler}>
           생성하기
         </Button>
-        <Button color="green" size="middle" handler={h}>
+        <Button color="green" size="middle" handler={testHandler}>
           불러오기
         </Button>
       </div>
