@@ -1,14 +1,20 @@
 import React from 'react';
 import './styled.scss';
+import { EColor, ESize } from '../../typings/css';
 
-type TbuttonProps = {
+type TButtonProps = {
   children: React.ReactNode;
-  color?: 'black' | 'green' | 'blue';
-  size?: 'small' | 'middle' | 'large' | 'auto';
+  color?: EColor;
+  size?: ESize;
   handler: () => void;
 };
 
-const Button: React.FC<TbuttonProps> = ({ children, color = 'black', size = 'auto', handler }: TbuttonProps) => {
+const Button: React.FC<TButtonProps> = ({
+  children,
+  color = EColor.black,
+  size = ESize.auto,
+  handler,
+}: TButtonProps) => {
   return (
     <button className={`Button ${color} ${size}`} onClick={handler}>
       {children}

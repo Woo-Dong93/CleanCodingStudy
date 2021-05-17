@@ -1,25 +1,26 @@
 import React from 'react';
 import './styled.scss';
+import { EColor, EFontSize, ESize } from '../../typings/css';
 
-type TinputProps = {
+type TInputProps = {
   type: string;
-  color?: 'black' | 'green' | 'blue';
-  size?: 'small' | 'middle' | 'large' | 'auto';
-  fontSize?: 'small' | 'middle' | 'large';
+  color?: EColor;
+  size?: ESize;
+  fontSize?: EFontSize;
   placeHolder?: string;
   inputValue: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
-const input = ({
+const Input = ({
   type = 'text',
-  color = 'black',
-  size = 'auto',
-  fontSize = 'small',
+  color = EColor.black,
+  size = ESize.auto,
+  fontSize = EFontSize.small,
   placeHolder,
   inputValue,
   onChange,
-}: TinputProps) => {
+}: TInputProps) => {
   return (
     <input
       className={`Input ${color} ${size} font-${fontSize}`}
@@ -31,4 +32,4 @@ const input = ({
   );
 };
 
-export default input;
+export default Input;
