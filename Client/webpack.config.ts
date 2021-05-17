@@ -10,7 +10,7 @@ const config: webpack.Configuration = {
   mode: isDevelopment ? 'development' : 'production',
   devtool: isDevelopment ? 'hidden-source-map' : 'inline-source-map',
   resolve: {
-    extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'], 
+    extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
     alias: {
       '@hooks': path.resolve(__dirname, 'hooks'),
       '@components': path.resolve(__dirname, 'components'),
@@ -32,7 +32,8 @@ const config: webpack.Configuration = {
           presets: [
             [
               '@babel/preset-env',
-              { // 어떤 브라우저를 지원할지, 최신 크롬버전 2개를 지원하겠다는 의미
+              {
+                // 어떤 브라우저를 지원할지, 최신 크롬버전 2개를 지원하겠다는 의미
                 targets: { browsers: ['last 2 chrome versions'] },
                 debug: isDevelopment,
               },
@@ -40,7 +41,7 @@ const config: webpack.Configuration = {
             '@babel/preset-react',
             '@babel/preset-typescript',
           ],
-          // 리엑트 핫 리로딩설정  
+          // 리엑트 핫 리로딩설정
           env: {
             development: {
               plugins: [require.resolve('react-refresh/babel')],
@@ -50,8 +51,8 @@ const config: webpack.Configuration = {
         exclude: path.join(__dirname, 'node_modules'),
       },
       {
-        test: /\.css?$/,
-        use: ['style-loader', 'css-loader'],
+        test: /\.scss?$/,
+        use: ['style-loader', 'css-loader', 'sass-loader'],
       },
     ],
   },
@@ -79,7 +80,7 @@ const config: webpack.Configuration = {
 
 //개발환경일 때 사용할 플러그인
 if (isDevelopment && config.plugins) {
-  // 리액트 핫 리로딩 사용하기  
+  // 리액트 핫 리로딩 사용하기
   config.plugins.push(new webpack.HotModuleReplacementPlugin());
   config.plugins.push(new ReactRefreshWebpackPlugin());
 }
