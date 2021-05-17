@@ -6,17 +6,17 @@ type TButtonProps = {
   children: React.ReactNode;
   color?: EColor;
   size?: ESize;
-  handler: () => void;
+  onClick: () => void;
 };
 
 const Button: React.FC<TButtonProps> = ({
   children,
   color = EColor.black,
   size = ESize.auto,
-  handler,
+  onClick,
 }: TButtonProps) => {
   return (
-    <button className={`Button ${color} ${size}`} onClick={handler}>
+    <button className={`Button ${color} ${size}`} onClick={onClick}>
       {children}
     </button>
   );

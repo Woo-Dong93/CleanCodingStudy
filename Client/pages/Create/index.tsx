@@ -26,10 +26,10 @@ const Create = () => {
         />
       </div>
       <div className="Button-container">
-        <Button color={EColor.green} size={ESize.middle} handler={testHandler}>
+        <Button color={EColor.green} size={ESize.middle} onClick={testHandler}>
           생성하기
         </Button>
-        <Button color={EColor.green} size={ESize.middle} handler={testHandler}>
+        <Button color={EColor.green} size={ESize.middle} onClick={testHandler}>
           불러오기
         </Button>
       </div>
