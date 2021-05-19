@@ -2,7 +2,7 @@ import React from 'react';
 import Input from '@components/Input';
 import Button from '@components/Button';
 import useInput from '@hooks/useInput';
-import { EColor, EFontSize, ESize } from '../../typings/css';
+import { EColor, EFontSize, ESize } from '@type/css';
 import './styled.scss';
 
 const Create = () => {

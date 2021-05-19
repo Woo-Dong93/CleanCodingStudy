@@ -1,6 +1,6 @@
 import React from 'react';
 import './styled.scss';
-import { EColor, ESize } from '../../typings/css';
+import { EColor, ESize } from '@type/css';
 
 type TButtonProps = {
   children: React.ReactNode;

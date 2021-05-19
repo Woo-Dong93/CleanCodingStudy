@@ -1,6 +1,6 @@
 import React from 'react';
 import './styled.scss';
-import { EColor, EFontSize, ESize } from '../../typings/css';
+import { EColor, EFontSize, ESize } from '@type/css';
 
 type TInputProps = {
   type: string;

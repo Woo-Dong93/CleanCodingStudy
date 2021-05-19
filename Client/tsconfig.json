@@ -1,23 +1,23 @@
 {
-    "compilerOptions": {
-      "esModuleInterop": true, // import * as React from 'react'를 import React from 'react'로 모듈을 쉽게 가져올수 있게 합니다.
-      "sourceMap": true, // 에러발생했을 때 에러난 위치를 쉽게 찾아갈 수 있다.
-      "lib": ["ES2020", "DOM"], // 최신문법사용
-      "jsx": "react", // jsx의 react문법 사용 명시
-      "module": "esnext", // 최산 모듈을 사용하겠다.
-      "moduleResolution": "Node", // import export도 node가 해석할 수 있게 하겠다.
-      "target": "es5", // es5로 변환하겠다.
-      "strict": true, // 타입체킹 엄격모드
-      "resolveJsonModule": true, // import josn파일을 허락하겠다.
-      // 편하게 임포트하기 위해 설정하기  
-      "baseUrl": ".",
-      "paths": {
-        "@hooks/*": ["hooks/*"],
-        "@components/*": ["components/*"],
-        "@layouts/*": ["layouts/*"],
-        "@pages/*": ["pages/*"],
-        "@utils/*": ["utils/*"],
-        "@typings/*": ["typings/*"]
-      }
+  "compilerOptions": {
+    "esModuleInterop": true, // import * as React from 'react'를 import React from 'react'로 모듈을 쉽게 가져올수 있게 합니다.
+    "sourceMap": true, // 에러발생했을 때 에러난 위치를 쉽게 찾아갈 수 있다.
+    "lib": ["ES2020", "DOM"], // 최신문법사용
+    "jsx": "react", // jsx의 react문법 사용 명시
+    "module": "esnext", // 최산 모듈을 사용하겠다.
+    "moduleResolution": "Node", // import export도 node가 해석할 수 있게 하겠다.
+    "target": "es5", // es5로 변환하겠다.
+    "strict": true, // 타입체킹 엄격모드
+    "resolveJsonModule": true, // import josn파일을 허락하겠다.
+    // 편하게 임포트하기 위해 설정하기
+    "baseUrl": ".",
+    "paths": {
+      "@hooks/*": ["hooks/*"],
+      "@components/*": ["components/*"],
+      "@layouts/*": ["layouts/*"],
+      "@pages/*": ["pages/*"],
+      "@utils/*": ["utils/*"],
+      "@type/*": ["types/*"]
     }
   }
+}
