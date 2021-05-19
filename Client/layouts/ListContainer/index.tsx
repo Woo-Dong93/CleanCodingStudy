@@ -25,4 +25,4 @@ const ListContainer = ({ btnOnClick }: TListContainer) => {
   );
 };
 
-export default ListContainer;
+export default React.memo(ListContainer);
