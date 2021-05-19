@@ -39,7 +39,7 @@ const Blog = () => {
     <div className="wrap">
       <Header />
       <MainContainer>
-        <ListContainer btnOnClick={btnOnClick} />
+        <ListContainer btnOnClick={btnOnClick} listData={appData.list} />
         <ContentContainer />
       </MainContainer>
       <Modal

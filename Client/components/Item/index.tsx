@@ -1,9 +1,13 @@
 import React from 'react';
-import { TItem } from '@type/item';
+import { TContents } from '../../module/app';
 import './styled.scss';
 
-const Item = ({ content }: TItem) => {
-  return <div className="item">{content.title}</div>;
+type TItem = {
+  contents: TContents;
+};
+
+const Item = ({ contents }: TItem) => {
+  return <div className="item">{contents.title}</div>;
 };
 
 export default Item;
