@@ -10,7 +10,7 @@ import './styled.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../module';
 import { insertContents } from '../../module/app';
-import { useParams } from 'react-router';
+import { Redirect, useParams } from 'react-router';
 
 const Blog = () => {
   const { idx } = useParams<{ idx: string }>();
@@ -53,6 +53,11 @@ const Blog = () => {
       return '';
     }
   };
+
+  // 글이 존재하지 않으면 홈으로 가기
+  if (!contentsGetByIdx()) {
+    return <Redirect to="/blog" />;
+  }
 
   return (
     <div className="wrap">
