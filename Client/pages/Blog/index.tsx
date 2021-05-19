@@ -8,13 +8,14 @@ import useTextArea from '@hooks/useTextArea';
 import useInput from '@hooks/useInput';
 import './styled.scss';
 import { useDispatch, useSelector } from 'react-redux';
-import { TAppData, insertContents } from '../../module/app';
+import { RootState } from '../../module';
+import { insertContents } from '../../module/app';
 
 const Blog = () => {
   const [modalState, setModalState] = useState(false);
-  const [textAreaValue, textAreaOnChange] = useTextArea('');
-  const [inputValue, inputOnChange] = useInput('');
-  const appData = useSelector((state: TAppData) => state);
+  const [textAreaValue, textAreaOnChange, setTextAreaValue] = useTextArea('');
+  const [inputValue, inputOnChange, setInputValue] = useInput('');
+  const appData = useSelector((state: RootState) => state.app);
   const dispatch = useDispatch();
 
   const btnOnClick = useCallback(() => {
@@ -23,12 +24,14 @@ const Blog = () => {
 
   // Modal handler
   const modalOnSubmit = () => {
-    //console.log(textAreaValue);
-    dispatch(insertContents({ id: 1, title: 'gd', contents: 'dddd' }));
+    const contents_id = appData.list.length + 1;
+    dispatch(insertContents({ id: contents_id, title: inputValue, contents: textAreaValue }));
     setModalState(false);
   };
 
   const modalOnClose = () => {
+    setInputValue('');
+    setTextAreaValue('');
     setModalState(false);
   };
 
