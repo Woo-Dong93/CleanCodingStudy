@@ -6,11 +6,15 @@ import ContentContainer from '@layouts/ContentContainer';
 import './styled.scss';
 
 const Blog = () => {
+  const btnOnClick = () => {
+    console.log('버튼클릭');
+  };
+
   return (
     <div className="wrap">
       <Header />
       <MainContainer>
-        <ListContainer />
+        <ListContainer btnOnClick={btnOnClick} />
         <ContentContainer />
       </MainContainer>
     </div>
