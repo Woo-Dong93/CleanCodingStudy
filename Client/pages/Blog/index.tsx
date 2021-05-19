@@ -5,6 +5,7 @@ import ListContainer from '@layouts/ListContainer';
 import ContentContainer from '@layouts/ContentContainer';
 import Modal from '@components/Modal';
 import useTextArea from '@hooks/useTextArea';
+import useInput from '@hooks/useInput';
 import './styled.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { TAppData, insertContents } from '../../module/app';
@@ -12,6 +13,7 @@ import { TAppData, insertContents } from '../../module/app';
 const Blog = () => {
   const [modalState, setModalState] = useState(false);
   const [textAreaValue, textAreaOnChange] = useTextArea('');
+  const [inputValue, inputOnChange] = useInput('');
   const appData = useSelector((state: TAppData) => state);
   const dispatch = useDispatch();
 
@@ -44,6 +46,8 @@ const Blog = () => {
         title={'글쓰기'}
         textAreaValue={textAreaValue}
         textAreaOnChange={textAreaOnChange}
+        inputValue={inputValue}
+        inputOnChange={inputOnChange}
       />
     </div>
   );
