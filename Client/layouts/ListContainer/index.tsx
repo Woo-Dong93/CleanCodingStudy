@@ -4,6 +4,7 @@ import Item from '@components/Item';
 import { ESize } from '@type/css';
 import { TContents } from '../../module/app';
 import { Link } from 'react-router-dom';
+import { useParams } from 'react-router';
 import './styled.scss';
 
 type TListContainer = {
@@ -12,12 +13,18 @@ type TListContainer = {
 };
 
 const ListContainer = ({ btnOnClick, listData }: TListContainer) => {
+  const { idx } = useParams<{ idx: string }>();
+
   return (
     <div className="list-container">
       <div className="list-main">
         {listData.map((item: TContents) => (
           <Link key={item.id} to={`/blog/${item.id}`}>
-            <Item contents={item} />
+            {parseInt(idx, 10) === item.id ? (
+              <Item contents={item} select={true} />
+            ) : (
+              <Item contents={item} select={false} />
+            )}
           </Link>
         ))}
       </div>

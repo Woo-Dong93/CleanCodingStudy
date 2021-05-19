@@ -10,7 +10,7 @@ import './styled.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../module';
 import { insertContents } from '../../module/app';
-import { Redirect, useParams } from 'react-router';
+import { useParams, Redirect, useHistory } from 'react-router';
 
 const Blog = () => {
   const { idx } = useParams<{ idx: string }>();
@@ -19,6 +19,7 @@ const Blog = () => {
   const [inputValue, inputOnChange, setInputValue] = useInput('');
   const appData = useSelector((state: RootState) => state.app);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const btnOnClick = useCallback(() => {
     setModalState(true);
@@ -33,6 +34,8 @@ const Blog = () => {
     setInputValue('');
     setTextAreaValue('');
     setModalState(false);
+
+    history.push(`/blog/${contents_id}`);
   };
 
   const modalOnClose = () => {
