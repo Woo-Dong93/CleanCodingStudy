@@ -5,13 +5,13 @@ export enum EColor {
 }
 
 export enum EFontSize {
-  small = 'smaill',
+  small = 'small',
   middle = 'middle',
   large = 'large',
 }
 
 export enum ESize {
-  small = 'smaill',
+  small = 'small',
   middle = 'middle',
   large = 'large',
   auto = 'auto',
