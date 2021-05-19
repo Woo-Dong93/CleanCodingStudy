@@ -6,7 +6,11 @@ type TContentContainer = {
 };
 
 const ContentContainer = ({ contents }: TContentContainer) => {
-  return <div className="content-container">{contents}</div>;
+  return (
+    <div className="content-container">
+      <p>{contents}</p>
+    </div>
+  );
 };
 
 export default React.memo(ContentContainer);
