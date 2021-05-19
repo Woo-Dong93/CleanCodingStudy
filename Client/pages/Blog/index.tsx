@@ -10,8 +10,10 @@ import './styled.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../module';
 import { insertContents } from '../../module/app';
+import { useParams } from 'react-router';
 
 const Blog = () => {
+  const { idx } = useParams<{ idx: string }>();
   const [modalState, setModalState] = useState(false);
   const [textAreaValue, textAreaOnChange, setTextAreaValue] = useTextArea('');
   const [inputValue, inputOnChange, setInputValue] = useInput('');
@@ -26,6 +28,10 @@ const Blog = () => {
   const modalOnSubmit = () => {
     const contents_id = appData.list.length + 1;
     dispatch(insertContents({ id: contents_id, title: inputValue, contents: textAreaValue }));
+
+    // 초기화
+    setInputValue('');
+    setTextAreaValue('');
     setModalState(false);
   };
 
@@ -35,12 +41,25 @@ const Blog = () => {
     setModalState(false);
   };
 
+  const contentsGetByIdx = (): string => {
+    if (!idx) {
+      return appData.contents;
+    } else {
+      for (let i = 0; i < appData.list.length; i++) {
+        if (parseInt(idx, 10) === appData.list[i].id) {
+          return appData.list[i].contents;
+        }
+      }
+      return '';
+    }
+  };
+
   return (
     <div className="wrap">
       <Header />
       <MainContainer>
         <ListContainer btnOnClick={btnOnClick} listData={appData.list} />
-        <ContentContainer />
+        <ContentContainer contents={contentsGetByIdx()} />
       </MainContainer>
       <Modal
         modalState={modalState}

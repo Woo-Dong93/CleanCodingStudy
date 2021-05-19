@@ -3,6 +3,7 @@ import Button from '@components/Button';
 import Item from '@components/Item';
 import { ESize } from '@type/css';
 import { TContents } from '../../module/app';
+import { Link } from 'react-router-dom';
 import './styled.scss';
 
 type TListContainer = {
@@ -15,7 +16,9 @@ const ListContainer = ({ btnOnClick, listData }: TListContainer) => {
     <div className="list-container">
       <div className="list-main">
         {listData.map((item: TContents) => (
-          <Item key={item.id} contents={item} />
+          <Link key={item.id} to={`/blog/${item.id}`}>
+            <Item contents={item} />
+          </Link>
         ))}
       </div>
       <div className="list-footer">

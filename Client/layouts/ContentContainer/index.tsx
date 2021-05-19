@@ -1,8 +1,12 @@
 import React from 'react';
 import './styled.scss';
 
-const ContentContainer = () => {
-  return <div className="content-container">콘텐트</div>;
+type TContentContainer = {
+  contents: string;
+};
+
+const ContentContainer = ({ contents }: TContentContainer) => {
+  return <div className="content-container">{contents}</div>;
 };
 
 export default React.memo(ContentContainer);

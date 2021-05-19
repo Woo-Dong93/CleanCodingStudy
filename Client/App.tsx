@@ -8,6 +8,7 @@ const App = () => {
     <Switch>
       <Redirect exact path="/" to="/blog" />
       <Route path="/create" component={Create} />
+      <Route path="/blog/:idx" component={Blog} />
       <Route path="/blog" component={Blog} />
     </Switch>
   );
