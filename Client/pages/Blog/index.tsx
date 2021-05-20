@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../module';
 import { insertContents } from '../../module/app';
 import { useParams, Redirect, useHistory } from 'react-router';
+import Input from '@components/Input';
 
 const Blog = () => {
   const { index } = useParams<{ index: string }>();
@@ -69,16 +70,14 @@ const Blog = () => {
         <ListContainer onCreateModal={onCreateModal} listData={appData.list} />
         <ContentContainer contents={getContentsByIndex()} />
       </MainContainer>
-      <Modal
-        opened={opened}
-        onClose={onCloseModal}
-        onSubmit={onSubmitModal}
-        title={'글쓰기'}
-        textAreaValue={textAreaValue}
-        onChangeTextArea={onChangeTextArea}
-        inputValue={inputValue}
-        inputOnChange={inputOnChange}
-      />
+      <Modal opened={opened} onClose={onCloseModal} onSubmit={onSubmitModal} title={'글쓰기'}>
+        <div className="modal-title">
+          <Input type="text" inputValue={inputValue} onChange={inputOnChange} />
+        </div>
+        <div className="modal-content">
+          <textarea value={textAreaValue} onChange={onChangeTextArea}></textarea>
+        </div>
+      </Modal>
     </div>
   );
 };

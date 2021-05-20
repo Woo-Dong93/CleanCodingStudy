@@ -26,33 +26,11 @@ $backgroundColor: #b7f0b1;
   }
 }
 
-.modal-content {
-  height: 100%;
-
-  & textarea {
-    width: 99%;
-    height: 99%;
-    background-color: #cefbc9;
-  }
-
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
 .modal-header {
   text-align: center;
   height: 60px;
   font-size: 1.3rem;
   font-weight: bold;
-}
-
-.modal-title {
-  & input {
-    width: 99% !important;
-    height: 30px !important;
-    border: 1px solid gray;
-    background-color: #cefbc9;
-  }
 }
 
 .modal-button {

@@ -1,30 +1,17 @@
 import React from 'react';
 import Button from '@components/Button';
 import { EColor, ESize } from '@type/css';
-import Input from '@components/Input';
 import './styled.scss';
 
 type TModal = {
+  children: React.ReactNode;
   title: string;
   opened: boolean;
   onSubmit: () => void;
   onClose: () => void;
-  textAreaValue: string;
-  onChangeTextArea: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
-  inputValue: string;
-  inputOnChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
-const Modal = ({
-  title,
-  onSubmit,
-  onClose,
-  opened,
-  textAreaValue,
-  onChangeTextArea,
-  inputValue,
-  inputOnChange,
-}: TModal) => {
+const Modal = ({ children, title, onSubmit, onClose, opened }: TModal) => {
   if (!opened) {
     return null;
   }
@@ -35,12 +22,7 @@ const Modal = ({
         <div className="modal-header">
           <p>{title}</p>
         </div>
-        <div className="modal-title">
-          <Input type="text" inputValue={inputValue} onChange={inputOnChange} />
-        </div>
-        <div className="modal-content">
-          <textarea value={textAreaValue} onChange={onChangeTextArea}></textarea>
-        </div>
+        {children}
         <div className="modal-button">
           <Button onClick={onSubmit} size={ESize.middle} color={EColor.green}>
             등록하기
