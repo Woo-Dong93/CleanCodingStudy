@@ -2,22 +2,30 @@ import React from 'react';
 import Button from '@components/Button';
 import Item from '@components/Item';
 import { ESize } from '@type/css';
+import { TContents } from '../../module/app';
+import { Link } from 'react-router-dom';
+import { useParams } from 'react-router';
 import './styled.scss';
 
 type TListContainer = {
-  btnOnClick: () => void;
+  onCreateModal: () => void;
+  listData: TContents[];
 };
 
-const ListContainer = ({ btnOnClick }: TListContainer) => {
+const ListContainer = ({ onCreateModal, listData }: TListContainer) => {
+  const { index } = useParams<{ index: string }>();
+
   return (
     <div className="list-container">
       <div className="list-main">
-        <Item key="1" content={{ id: 1, title: '제목1', content: '안녕하세요.' }} />
-        <Item key="2" content={{ id: 2, title: '제목2', content: '안녕하세요2' }} />
-        <Item key="3" content={{ id: 3, title: '제목3', content: '안녕하세요3' }} />
+        {listData.map((item: TContents) => (
+          <Link key={item.id} to={`/blog/${item.id}`}>
+            <Item contents={item} seleced={Number(index) === item.id} />
+          </Link>
+        ))}
       </div>
       <div className="list-footer">
-        <Button onClick={btnOnClick} size={ESize.middle}>
+        <Button onClick={onCreateModal} size={ESize.middle}>
           글쓰기
         </Button>
       </div>

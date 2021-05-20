@@ -21,7 +21,7 @@ export type TContents = {
 type TAppAction = ReturnType<typeof insertContents>;
 
 // 초기값
-const initialState: TAppData = { id: 1, name: '', contents: '', list: [] };
+const initialState: TAppData = { id: 1, name: '', contents: '블로그에 오신것을 환영합니다.', list: [] };
 
 // 리듀서
 const appReducer = createReducer(initialState, (builder) => {

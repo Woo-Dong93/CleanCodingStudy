@@ -26,20 +26,7 @@ $backgroundColor: #b7f0b1;
   }
 }
 
-.modal-content {
-  height: 100%;
-
-  & textarea {
-    width: 99%;
-    height: 99%;
-    background-color: #cefbc9;
-  }
-
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
-.modal-title {
+.modal-header {
   text-align: center;
   height: 60px;
   font-size: 1.3rem;

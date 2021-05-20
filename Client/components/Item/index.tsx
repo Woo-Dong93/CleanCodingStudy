@@ -1,9 +1,14 @@
 import React from 'react';
-import { TItem } from '@type/item';
+import { TContents } from '../../module/app';
 import './styled.scss';
 
-const Item = ({ content }: TItem) => {
-  return <div className="item">{content.title}</div>;
+type TItem = {
+  contents: TContents;
+  seleced: boolean;
+};
+
+const Item = ({ contents, seleced }: TItem) => {
+  return <div className={`item ${seleced ? 'selected' : ''}`}>{contents.title}</div>;
 };
 
 export default Item;

@@ -5,46 +5,79 @@ import ListContainer from '@layouts/ListContainer';
 import ContentContainer from '@layouts/ContentContainer';
 import Modal from '@components/Modal';
 import useTextArea from '@hooks/useTextArea';
+import useInput from '@hooks/useInput';
 import './styled.scss';
 import { useDispatch, useSelector } from 'react-redux';
-import { TAppData, insertContents } from '../../module/app';
+import { RootState } from '../../module';
+import { insertContents } from '../../module/app';
+import { useParams, Redirect, useHistory } from 'react-router';
+import Input from '@components/Input';
 
 const Blog = () => {
-  const [modalState, setModalState] = useState(false);
-  const [textAreaValue, textAreaOnChange] = useTextArea('');
-  const appData = useSelector((state: TAppData) => state);
+  const { index } = useParams<{ index: string }>();
+  const [opened, setModalState] = useState(false);
+  const [textAreaValue, onChangeTextArea, setTextAreaValue] = useTextArea('');
+  const [inputValue, inputOnChange, setInputValue] = useInput('');
+  const appData = useSelector((state: RootState) => state.app);
   const dispatch = useDispatch();
+  const history = useHistory();
 
-  const btnOnClick = useCallback(() => {
+  const onCreateModal = useCallback(() => {
     setModalState(true);
   }, []);
 
   // Modal handler
-  const modalOnSubmit = () => {
-    //console.log(textAreaValue);
-    dispatch(insertContents({ id: 1, title: 'gd', contents: 'dddd' }));
+  const onSubmitModal = () => {
+    const contents_id = appData.list.length + 1;
+    dispatch(insertContents({ id: contents_id, title: inputValue, contents: textAreaValue }));
+
+    // 초기화
+    setInputValue('');
+    setTextAreaValue('');
+    setModalState(false);
+
+    history.push(`/blog/${contents_id}`);
+  };
+
+  const onCloseModal = () => {
+    setInputValue('');
+    setTextAreaValue('');
     setModalState(false);
   };
 
-  const modalOnClose = () => {
-    setModalState(false);
+  const getContentsByIndex = (): string => {
+    if (!index) {
+      return appData.contents;
+    } else {
+      for (let i = 0; i < appData.list.length; i++) {
+        if (Number(index) === appData.list[i].id) {
+          return appData.list[i].contents;
+        }
+      }
+      return '';
+    }
   };
+
+  // 글이 존재하지 않으면 홈으로 가기
+  if (!getContentsByIndex()) {
+    return <Redirect to="/blog" />;
+  }
 
   return (
     <div className="wrap">
       <Header />
       <MainContainer>
-        <ListContainer btnOnClick={btnOnClick} />
-        <ContentContainer />
+        <ListContainer onCreateModal={onCreateModal} listData={appData.list} />
+        <ContentContainer contents={getContentsByIndex()} />
       </MainContainer>
-      <Modal
-        modalState={modalState}
-        onClose={modalOnClose}
-        onSubmit={modalOnSubmit}
-        title={'글쓰기'}
-        textAreaValue={textAreaValue}
-        textAreaOnChange={textAreaOnChange}
-      />
+      <Modal opened={opened} onClose={onCloseModal} onSubmit={onSubmitModal} title={'글쓰기'}>
+        <div className="modal-title">
+          <Input type="text" inputValue={inputValue} onChange={inputOnChange} />
+        </div>
+        <div className="modal-content">
+          <textarea value={textAreaValue} onChange={onChangeTextArea}></textarea>
+        </div>
+      </Modal>
     </div>
   );
 };

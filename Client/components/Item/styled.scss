@@ -9,4 +9,7 @@
   &:hover {
     background-color: green;
   }
+  &.selected {
+    background-color: green;
+  }
 }

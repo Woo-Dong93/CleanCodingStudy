@@ -4,25 +4,25 @@ import { EColor, ESize } from '@type/css';
 import './styled.scss';
 
 type TModal = {
+  children: React.ReactNode;
   title: string;
-  modalState: boolean;
+  opened: boolean;
   onSubmit: () => void;
   onClose: () => void;
-  textAreaValue: string;
-  textAreaOnChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
 };
 
-const Modal = ({ title, onSubmit, onClose, modalState, textAreaValue, textAreaOnChange }: TModal) => {
-  if (!modalState) return null;
+const Modal = ({ children, title, onSubmit, onClose, opened }: TModal) => {
+  if (!opened) {
+    return null;
+  }
+
   return (
     <div className="modal-background" onClick={onClose}>
       <div className="modal-container" onClick={(e) => e.stopPropagation()}>
-        <div className="modal-title">
+        <div className="modal-header">
           <p>{title}</p>
         </div>
-        <div className="modal-content">
-          <textarea value={textAreaValue} onChange={textAreaOnChange}></textarea>
-        </div>
+        {children}
         <div className="modal-button">
           <Button onClick={onSubmit} size={ESize.middle} color={EColor.green}>
             등록하기
