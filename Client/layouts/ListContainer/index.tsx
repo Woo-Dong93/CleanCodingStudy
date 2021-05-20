@@ -8,28 +8,24 @@ import { useParams } from 'react-router';
 import './styled.scss';
 
 type TListContainer = {
-  btnOnClick: () => void;
+  onCreateModal: () => void;
   listData: TContents[];
 };
 
-const ListContainer = ({ btnOnClick, listData }: TListContainer) => {
-  const { idx } = useParams<{ idx: string }>();
+const ListContainer = ({ onCreateModal, listData }: TListContainer) => {
+  const { index } = useParams<{ index: string }>();
 
   return (
     <div className="list-container">
       <div className="list-main">
         {listData.map((item: TContents) => (
           <Link key={item.id} to={`/blog/${item.id}`}>
-            {parseInt(idx, 10) === item.id ? (
-              <Item contents={item} select={true} />
-            ) : (
-              <Item contents={item} select={false} />
-            )}
+            <Item contents={item} seleced={Number(index) === item.id} />
           </Link>
         ))}
       </div>
       <div className="list-footer">
-        <Button onClick={btnOnClick} size={ESize.middle}>
+        <Button onClick={onCreateModal} size={ESize.middle}>
           글쓰기
         </Button>
       </div>

@@ -13,20 +13,20 @@ import { insertContents } from '../../module/app';
 import { useParams, Redirect, useHistory } from 'react-router';
 
 const Blog = () => {
-  const { idx } = useParams<{ idx: string }>();
-  const [modalState, setModalState] = useState(false);
-  const [textAreaValue, textAreaOnChange, setTextAreaValue] = useTextArea('');
+  const { index } = useParams<{ index: string }>();
+  const [opened, setModalState] = useState(false);
+  const [textAreaValue, onChangeTextArea, setTextAreaValue] = useTextArea('');
   const [inputValue, inputOnChange, setInputValue] = useInput('');
   const appData = useSelector((state: RootState) => state.app);
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const btnOnClick = useCallback(() => {
+  const onCreateModal = useCallback(() => {
     setModalState(true);
   }, []);
 
   // Modal handler
-  const modalOnSubmit = () => {
+  const onSubmitModal = () => {
     const contents_id = appData.list.length + 1;
     dispatch(insertContents({ id: contents_id, title: inputValue, contents: textAreaValue }));
 
@@ -38,18 +38,18 @@ const Blog = () => {
     history.push(`/blog/${contents_id}`);
   };
 
-  const modalOnClose = () => {
+  const onCloseModal = () => {
     setInputValue('');
     setTextAreaValue('');
     setModalState(false);
   };
 
-  const contentsGetByIdx = (): string => {
-    if (!idx) {
+  const getContentsByIndex = (): string => {
+    if (!index) {
       return appData.contents;
     } else {
       for (let i = 0; i < appData.list.length; i++) {
-        if (parseInt(idx, 10) === appData.list[i].id) {
+        if (Number(index) === appData.list[i].id) {
           return appData.list[i].contents;
         }
       }
@@ -58,7 +58,7 @@ const Blog = () => {
   };
 
   // 글이 존재하지 않으면 홈으로 가기
-  if (!contentsGetByIdx()) {
+  if (!getContentsByIndex()) {
     return <Redirect to="/blog" />;
   }
 
@@ -66,16 +66,16 @@ const Blog = () => {
     <div className="wrap">
       <Header />
       <MainContainer>
-        <ListContainer btnOnClick={btnOnClick} listData={appData.list} />
-        <ContentContainer contents={contentsGetByIdx()} />
+        <ListContainer onCreateModal={onCreateModal} listData={appData.list} />
+        <ContentContainer contents={getContentsByIndex()} />
       </MainContainer>
       <Modal
-        modalState={modalState}
-        onClose={modalOnClose}
-        onSubmit={modalOnSubmit}
+        opened={opened}
+        onClose={onCloseModal}
+        onSubmit={onSubmitModal}
         title={'글쓰기'}
         textAreaValue={textAreaValue}
-        textAreaOnChange={textAreaOnChange}
+        onChangeTextArea={onChangeTextArea}
         inputValue={inputValue}
         inputOnChange={inputOnChange}
       />

@@ -6,11 +6,11 @@ import './styled.scss';
 
 type TModal = {
   title: string;
-  modalState: boolean;
+  opened: boolean;
   onSubmit: () => void;
   onClose: () => void;
   textAreaValue: string;
-  textAreaOnChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  onChangeTextArea: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   inputValue: string;
   inputOnChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
@@ -19,13 +19,16 @@ const Modal = ({
   title,
   onSubmit,
   onClose,
-  modalState,
+  opened,
   textAreaValue,
-  textAreaOnChange,
+  onChangeTextArea,
   inputValue,
   inputOnChange,
 }: TModal) => {
-  if (!modalState) return null;
+  if (!opened) {
+    return null;
+  }
+
   return (
     <div className="modal-background" onClick={onClose}>
       <div className="modal-container" onClick={(e) => e.stopPropagation()}>
@@ -36,7 +39,7 @@ const Modal = ({
           <Input type="text" inputValue={inputValue} onChange={inputOnChange} />
         </div>
         <div className="modal-content">
-          <textarea value={textAreaValue} onChange={textAreaOnChange}></textarea>
+          <textarea value={textAreaValue} onChange={onChangeTextArea}></textarea>
         </div>
         <div className="modal-button">
           <Button onClick={onSubmit} size={ESize.middle} color={EColor.green}>
