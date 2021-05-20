@@ -35,7 +35,7 @@ const Blog = () => {
     setInputValue('');
     setTextAreaValue('');
     setModalState(false);
-
+    console.log('d');
     history.push(`/blog/${contents_id}`);
   };
 
@@ -65,7 +65,7 @@ const Blog = () => {
 
   return (
     <div className="wrap">
-      <Header />
+      <Header title={appData.name} />
       <MainContainer>
         <ListContainer onCreateModal={onCreateModal} listData={appData.list} />
         <ContentContainer contents={getContentsByIndex()} />

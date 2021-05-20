@@ -1,8 +1,17 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './styled.scss';
 
-const Header = () => {
-  return <div className="header">헤더</div>;
+type THeader = {
+  title: string;
+};
+
+const Header = ({ title }: THeader) => {
+  return (
+    <div className="header">
+      <Link to="/blog">{title}</Link>
+    </div>
+  );
 };
 
 export default Header;
