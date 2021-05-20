@@ -63,6 +63,10 @@ const Blog = () => {
     return <Redirect to="/blog" />;
   }
 
+  if (!appData.name) {
+    return <Redirect to="/create" />;
+  }
+
   return (
     <div className="wrap">
       <Header title={appData.name} />
