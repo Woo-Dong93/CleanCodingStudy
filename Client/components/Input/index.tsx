@@ -8,7 +8,7 @@ type TInputProps = {
   size?: ESize;
   fontSize?: EFontSize;
   placeHolder?: string;
-  inputValue: string;
+  inputValue?: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 

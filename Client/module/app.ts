@@ -2,10 +2,12 @@ import { createAction, createReducer } from '@reduxjs/toolkit';
 
 const INSERT_CONTENTS = 'cotnents/INSERT_CONTENTS' as const;
 const CREATE_BLOG = 'cotnents/CREATE_BLOG' as const;
+const FILE_UPLOAD_APPDATA = 'cotnents/FILE_UPLOAD_APPDATA' as const;
 
 // 액션 생성자 함수
 export const insertContents = createAction<TContents>(INSERT_CONTENTS);
 export const createBlog = createAction<string>(CREATE_BLOG);
+export const fileUploadAppData = createAction<TAppData>(FILE_UPLOAD_APPDATA);
 
 export type TAppData = {
   id: number;
@@ -31,6 +33,12 @@ const appReducer = createReducer(initialState, (builder) => {
     })
     .addCase(createBlog, (state, action: ReturnType<typeof createBlog>) => {
       state.name = action.payload;
+    })
+    .addCase(fileUploadAppData, (state, action: ReturnType<typeof fileUploadAppData>) => {
+      state.id = action.payload.id;
+      state.name = action.payload.name;
+      state.contents = action.payload.contents;
+      state.list = action.payload.list;
     });
 });
 export default appReducer;

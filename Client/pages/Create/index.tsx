@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 import Input from '@components/Input';
 import Button from '@components/Button';
 import useInput from '@hooks/useInput';
@@ -6,7 +6,7 @@ import { EColor, EFontSize, ESize } from '@type/css';
 import './styled.scss';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { createBlog } from '../../module/app';
+import { createBlog, fileUploadAppData } from '../../module/app';
 
 const Create = () => {
   const [blogName, onChangeBlogName] = useInput('');
@@ -18,8 +18,18 @@ const Create = () => {
     history.push(`/blog/`);
   };
 
-  const onCreateBlogByFile = () => {
-    console.log('hi');
+  const onCreateBlogByFile = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      const file = e.target.files[0];
+      const fileReader = new FileReader();
+
+      fileReader.readAsText(file);
+      fileReader.onload = () => {
+        const appData = JSON.parse(fileReader.result as string);
+        dispatch(fileUploadAppData(appData));
+        history.push(`/blog/`);
+      };
+    }
   };
 
   return (
@@ -39,9 +49,15 @@ const Create = () => {
         <Button color={EColor.green} size={ESize.middle} onClick={onCreateBlog}>
           생성하기
         </Button>
-        <Button color={EColor.green} size={ESize.middle} onClick={onCreateBlogByFile}>
-          불러오기
-        </Button>
+      </div>
+      <div className="File-container">
+        <Input
+          type="file"
+          color={EColor.green}
+          size={ESize.auto}
+          fontSize={EFontSize.small}
+          onChange={onCreateBlogByFile}
+        />
       </div>
     </div>
   );
