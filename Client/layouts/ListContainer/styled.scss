@@ -1,13 +1,16 @@
 .list-container {
-  border: 1px solid red;
+  border-right: 1px solid green;
   width: 400px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 20px;
 }
 
 .list-main {
   height: 100%;
   width: 100%;
+}
+
+.list-footer {
+  padding: 20px;
 }
