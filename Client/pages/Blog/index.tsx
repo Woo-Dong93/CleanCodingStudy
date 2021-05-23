@@ -35,7 +35,6 @@ const Blog = () => {
     setInputValue('');
     setTextAreaValue('');
     setModalState(false);
-    console.log('d');
     history.push(`/blog/${contents_id}`);
   };
 
