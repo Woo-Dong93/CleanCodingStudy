@@ -68,7 +68,7 @@ const Blog = () => {
 
   return (
     <div className="wrap">
-      <Header title={appData.name} />
+      <Header appData={appData} />
       <MainContainer>
         <ListContainer onCreateModal={onCreateModal} listData={appData.list} />
         <ContentContainer contents={getContentsByIndex()} />
