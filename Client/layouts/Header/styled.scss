@@ -1,4 +1,15 @@
 .header {
   height: 200px;
-  border: 1px red solid;
+  border: 1px solid green;
+  text-align: center;
+  font-size: 1.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-button {
+  position: absolute;
+  right: 20px;
+  top: 20px;
 }

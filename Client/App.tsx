@@ -6,7 +6,7 @@ import Blog from '@pages/Blog';
 const App = () => {
   return (
     <Switch>
-      <Redirect exact path="/" to="/blog" />
+      <Redirect exact path="/" to="/create" />
       <Route path="/create" component={Create} />
       <Route path="/blog/:index" component={Blog} />
       <Route path="/blog" component={Blog} />

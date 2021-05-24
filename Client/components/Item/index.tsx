@@ -4,11 +4,11 @@ import './styled.scss';
 
 type TItem = {
   contents: TContents;
-  seleced: boolean;
+  selected: boolean;
 };
 
-const Item = ({ contents, seleced }: TItem) => {
-  return <div className={`item ${seleced ? 'selected' : ''}`}>{contents.title}</div>;
+const Item = ({ contents, selected }: TItem) => {
+  return <div className={`item ${selected ? 'selected' : ''}`}>{contents.title}</div>;
 };
 
 export default Item;
