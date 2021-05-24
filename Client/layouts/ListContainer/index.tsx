@@ -20,7 +20,7 @@ const ListContainer = ({ onCreateModal, listData }: TListContainer) => {
       <div className="list-main">
         {listData.map((item: TContents) => (
           <Link key={item.id} to={`/blog/${item.id}`}>
-            <Item contents={item} seleced={Number(index) === item.id} />
+            <Item contents={item} selected={Number(index) === item.id} />
           </Link>
         ))}
       </div>
